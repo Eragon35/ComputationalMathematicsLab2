@@ -1,5 +1,4 @@
 import scala.io.StdIn
-import scala.math
 
 object Main {
   var func = null // TODO: rework to smth normal
