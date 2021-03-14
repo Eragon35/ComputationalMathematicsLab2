@@ -22,17 +22,26 @@ object BisectionMethod {
       Console.err.println("На данном отрезке корней нет")
       return
     }
-    // use Метод половинного деления
-    println(s"$leftPointer $rightPointer")
-//    var root: Double = (leftPointer + rightPointer) / 2
-//    var counter: Int = 0
-//    while (Math.abs(leftPointer - rightPointer) >= accuracy || func(root) != 0.0) {
-//
-//    }
+    var root: Double = (leftPointer + rightPointer) / 2
+    var counter: Int = 0
+    println("Метод половинного деления")
+    println("it   a      b      x     f(a)    f(b)    f(x)  |a-b|")
+    show(leftPointer, rightPointer, root, counter)
+    while (Math.abs(leftPointer - rightPointer) >= accuracy && func(root) != 0.0) {
+      if ((func(leftPointer) > 0) == (func(root) > 0)) leftPointer = root
+      else rightPointer = root
+      root = (leftPointer + rightPointer) / 2
+      counter += 1
+      show(leftPointer, rightPointer, root, counter)
+    }
+    println("----------------------------------------------------")
   }
 
-  def show(a: Double, b: Double, x: Double): Unit = {
-
+  def show(a: Double, b: Double, x: Double, iterator: Int): Unit = {
+    val funca = func(a)
+    val funcb = func(b)
+    val funcx = func(x)
+    val section = Math.abs(a - b)
+    println(f"$iterator $a%1.4f $b%1.4f $x%1.4f $funca%1.4f $funcb%1.4f $funcx%1.4f $section%1.4f")
   }
-
 }
