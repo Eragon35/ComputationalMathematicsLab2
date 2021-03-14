@@ -1,6 +1,4 @@
-import scala.annotation.tailrec
 import scala.io.StdIn
-import scala.util.control.Exception
 
 object ConsoleHandler {
   def functionHandler(line: String): Double => Double = {
@@ -18,8 +16,22 @@ object ConsoleHandler {
       case "da" | "yes" | "y" | "+" | "true" | "да" => true
       case a => try {
         if (a.toDouble > 0) return true
-        } ;false
+        } catch {
+        case exception: Exception =>
+      }; false
       case _ => false
+    }
+  }
+  def accuracyAgreeHandler(line: String): Double = {
+    if (agreeHandler(line)) 0.01
+    else {
+      println("Введите желаемую точность")
+      try {
+        val accuracy = StdIn.readDouble()
+        return accuracy
+      } catch {
+        case e: Exception => Console.err.println("Ошибка чтения\nточность установлена на значение 0.01")
+      }; 0.01
     }
   }
 

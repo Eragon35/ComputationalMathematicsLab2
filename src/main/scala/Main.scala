@@ -19,8 +19,10 @@ object Main {
       println("\nВыберите функцию: ") // TODO: add string with different functions
       func = ConsoleHandler.functionHandler(StdIn.readLine())
       // show graph of function
-      var confirm = false
-      while (!confirm) {
+      var confirmGraph = false
+      println("Вас устраивает точность в 0.01 ?")
+      accuracy = ConsoleHandler.accuracyAgreeHandler(StdIn.readLine())
+      while (!confirmGraph) {
         println("Введите левый интервал: ")
         left = StdIn.readDouble()
         println("Введите правый интервал: ")
@@ -29,7 +31,7 @@ object Main {
         else {
           // show new graph
           println("Вас устраивает график? Он содержит корни")
-          confirm = ConsoleHandler.agreeHandler(StdIn.readLine())
+          confirmGraph = ConsoleHandler.agreeHandler(StdIn.readLine())
         }
       }
       println("Начинаем вычислять корни:")
