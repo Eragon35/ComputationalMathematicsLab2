@@ -24,7 +24,7 @@ object BisectionMethod {
     }
     var root: Double = (leftPointer + rightPointer) / 2
     var counter: Int = 0
-    println("Метод половинного деления")
+    println("1) Метод половинного деления:")
     println("it   a      b      x     f(a)    f(b)    f(x)  |a-b|")
     show(leftPointer, rightPointer, root, counter)
     while (Math.abs(leftPointer - rightPointer) >= accuracy && func(root) != 0.0) {

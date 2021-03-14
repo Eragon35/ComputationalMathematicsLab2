@@ -1,7 +1,5 @@
 import Main.{func, left, right}
 
-import scala.util.control.Breaks.break
-
 object FixedPointIteration {
   def solve(): Unit = {
     val step: Double = if (right - left < 5) (right - left) / 10 else 0.5

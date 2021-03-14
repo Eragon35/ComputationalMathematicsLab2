@@ -32,7 +32,7 @@ object Main {
           confirm = ConsoleHandler.agreeHandler(StdIn.readLine())
         }
       }
-      println("Начинаем вычислять корни")
+      println("Начинаем вычислять корни:")
       BisectionMethod.solve() // find right root by 'Метод половинного деления'
       SecantMethod.solve() // find left root by 'Метод секущих'
       FixedPointIteration.solve() // find central root by 'Метод простой итерации'
