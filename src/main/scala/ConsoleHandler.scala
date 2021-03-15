@@ -1,3 +1,5 @@
+import Main._
+
 import scala.io.StdIn
 
 object ConsoleHandler {
@@ -41,5 +43,31 @@ object ConsoleHandler {
         case _: Exception => Console.err.println("Ошибка чтения\nточность установлена на значение 0.01")
       }; 0.01
     }
+  }
+
+  def confirmGraph(): Unit = {
+    var confirmGraph = false
+    while (!confirmGraph) {
+    println("Хотите ввести в консоль данные?")
+    if (agreeHandler(StdIn.readLine())) {
+      println("Вас устраивает точность в 0.01 ?")
+      accuracy = ConsoleHandler.accuracyAgreeHandler(StdIn.readLine())
+      println("Введите начало интервала: ")
+      left = StdIn.readDouble()
+      println("Введите конец интервала: ")
+      right = StdIn.readDouble()
+      if (right <= left) {
+        Console.err.println("Конец интеравл должен быть больше начала интервала")
+        println("устанлвлен интервал [-5, 2]")
+        left = -5
+        right = 2
+      }
+      else step = if (right - left < 5) (right - left) / 10 else 0.5
+    } else { print("Введите имя файла: ")
+      ReadFromFile.read(StdIn.readLine().trim)
+    }
+    Graph.show()
+    println("Вас устраивает график? Он содержит корни")
+    confirmGraph = ConsoleHandler.agreeHandler(StdIn.readLine())
   }
 }
