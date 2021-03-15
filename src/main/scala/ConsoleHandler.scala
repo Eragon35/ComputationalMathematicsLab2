@@ -1,18 +1,20 @@
 import scala.io.StdIn
 
 object ConsoleHandler {
-  def functionHandler(line: String): Double => Double = {
+  def functionHandler(line: String): (Double => Double, Double => Double) = {
     line.trim.toLowerCase match {
-      case "1" => first
-      case "2" => second // TODO: add normal functions
+      case "1" => (first, firstDerivative)
+      case "2" => (second, secondDerivative) // TODO: add normal functions
       case "exit" | "e" | "no" | "n" => System.exit(0)
-        Math.pow(2, _) // костыль чтобы иметь возможность выйти из программы
+        (Math.pow(2, _), Math.pow(2, _)) // костыль чтобы иметь возможность выйти из программы
       case _ => Console.err.println("Такой функции нет, установлена первая функция")
-        first
+        (first, firstDerivative)
     }
   }
   private def first(x: Double): Double = -1.38 * Math.pow(x, 3) - 5.42 * Math.pow(x, 2) + 2.57 * x + 10.95
+  private def firstDerivative(x: Double): Double = -4.14 * Math.pow(x, 2) -10.84 * x + 2.57
   private def second(x: Double): Double = Math.cos(x)
+  private def secondDerivative(x: Double) = -Math.sin(x)
 
   def agreeHandler(line: String): Boolean = {
     line.trim.toLowerCase match {

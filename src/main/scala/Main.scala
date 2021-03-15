@@ -6,6 +6,7 @@ object Main {
   var right: Double = 10
   var step: Double = 0.5
   var func: Double => Double = Math.pow(left, _)
+  var funcDerivative: Double => Double = Math.pow(left, _)
 
 
   def main(args: Array[String]): Unit = {
@@ -18,7 +19,9 @@ object Main {
 
     while (true) {
       println("\nВыберите функцию: ")
-      func = ConsoleHandler.functionHandler(StdIn.readLine())
+      var temp = ConsoleHandler.functionHandler(StdIn.readLine())
+      func = temp._1
+      funcDerivative = temp._2
       Graph.show()
       var confirmGraph = false
       println("Вас устраивает точность в 0.01 ?")

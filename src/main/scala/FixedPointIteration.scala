@@ -16,10 +16,27 @@ object FixedPointIteration {
     }
     val rightPointer: Double = roots((roots.size + 1) / 2 - 1)
     val leftPointer: Double = rightPointer - step
+    var iterator: Int = 0
     println("3) Метод простой итерации")
     println("it   xi    xi+1   φ(xi+1) f(xi+1) |xi+1 - xi|")
-
+    var x0 = if (funcDerivative(leftPointer) > funcDerivative(rightPointer)) leftPointer else rightPointer
+    val lambda = -1 / funcDerivative(x0)
+    var xi = x0 + lambda * func(x0)
+    show(x0, xi, iterator)
+    while (Math.abs(x0 - xi) > accuracy){
+      x0 = xi
+      xi = x0 + lambda * func(x0)
+      iterator += 1
+      show(x0, xi, iterator)
+    }
+    
     println("---------------------------------------------")
   }
 
+  private def show(x0: Double, xi: Double, iterator: Int): Unit = {
+    val fix = func(xi)
+    val funcx = func(xi)
+    val section = Math.abs(x0 - xi)
+    println(f"$iterator $x0%1.4f $xi%1.4f $fix%1.4f  $funcx%1.4f  $section%1.4f")
+  }
 }
