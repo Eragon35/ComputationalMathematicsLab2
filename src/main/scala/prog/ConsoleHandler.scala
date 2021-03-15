@@ -1,4 +1,7 @@
-import Main._
+package prog
+
+import prog.IO.ReadFromFile
+import prog.Main._
 
 import scala.io.StdIn
 
@@ -14,8 +17,9 @@ object ConsoleHandler {
         (first, firstDerivative)
     }
   }
+
   private def first(x: Double): Double = -1.38 * Math.pow(x, 3) - 5.42 * Math.pow(x, 2) + 2.57 * x + 10.95
-  private def firstDerivative(x: Double): Double = -4.14 * Math.pow(x, 2) -10.84 * x + 2.57
+  private def firstDerivative(x: Double): Double = -4.14 * Math.pow(x, 2) - 10.84 * x + 2.57
   private def second(x: Double): Double = Math.cos(x)
   private def secondDerivative(x: Double): Double = -Math.sin(x)
   private def third(x: Double): Double = Math.pow(x, 3) - 0.78 * Math.pow(x, 2) - 0.826 * x + 0.145
@@ -26,22 +30,23 @@ object ConsoleHandler {
       case "da" | "yes" | "y" | "+" | "true" | "да" => true
       case a => try {
         if (a.toDouble > 0) return true
-        } catch {
-        case _: Exception =>
-      }; false
+      } catch { case _: Exception => }
+        false
       case _ => false
     }
   }
+
   def accuracyAgreeHandler(line: String): Double = {
     if (agreeHandler(line)) 0.01
     else {
       println("Введите желаемую точность")
       try {
         val accuracy = StdIn.readDouble()
-        return accuracy
+        accuracy
       } catch {
         case _: Exception => Console.err.println("Ошибка чтения\nточность установлена на значение 0.01")
-      }; 0.01
+          0.01
+      }
     }
   }
 
@@ -63,7 +68,8 @@ object ConsoleHandler {
           right = 2
         }
         else step = if (right - left < 5) (right - left) / 10 else 0.5
-      } else { print("Введите имя файла: ")
+      } else {
+        print("Введите имя файла: ")
         ReadFromFile.read(StdIn.readLine().trim)
       }
       Graph.show()
@@ -80,6 +86,5 @@ object ConsoleHandler {
       filename = StdIn.readLine().trim
       false
     }
-
   }
 }

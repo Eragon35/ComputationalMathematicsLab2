@@ -1,7 +1,10 @@
-import scala.collection.mutable
-import scala.io.StdIn
-import collection.immutable.IndexedSeq
+package prog
+
+import prog.IO.WriteToFile
+import prog.MathMethod.{BisectionMethod, FixedPointIteration, SecantMethod}
+
 import scala.collection.mutable.ArrayBuffer
+import scala.io.StdIn
 
 object Main {
   var accuracy: Double = 0.01
@@ -15,13 +18,14 @@ object Main {
 
 
   def main(args: Array[String]): Unit = {
-    println(""" Вариант №2
-      | Метод половинного деления
-      | Метод секущих
-      | Метод простой итерации
-      | Заданная функция 1: −1,38x^3 − 5,42x^2 + 2,57x + 10,95
-      | Функция 2: cos(x)
-      | Функция 3: x^3 − 0.78x^2 − 0.826x + 0,145""".stripMargin)
+    println(
+      """ Вариант №2
+        | Метод половинного деления
+        | Метод секущих
+        | Метод простой итерации
+        | Заданная функция 1: −1,38x^3 − 5,42x^2 + 2,57x + 10,95
+        | Функция 2: cos(x)
+        | Функция 3: x^3 − 0.78x^2 − 0.826x + 0,145""".stripMargin)
 
     while (true) {
       println("\nВыберите функцию: ")
