@@ -37,10 +37,10 @@ object BisectionMethod {
   }
 
   private def show(a: Double, b: Double, x: Double, iterator: Int): Unit = {
-    val funca = func(a)
-    val funcb = func(b)
-    val funcx = func(x)
+    val funcA = func(a)
+    val funcB = func(b)
+    val funcX = func(x)
     val section = Math.abs(a - b)
-    println(f"$iterator $a%1.4f $b%1.4f $x%1.4f $funca%1.4f $funcb%1.4f $funcx%1.4f $section%1.4f")
+    println(f"$iterator $a%1.4f $b%1.4f $x%1.4f $funcA%1.4f $funcB%1.4f $funcX%1.4f $section%1.4f")
   }
 }

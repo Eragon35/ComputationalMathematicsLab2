@@ -35,8 +35,8 @@ object FixedPointIteration {
 
   private def show(x0: Double, xi: Double, iterator: Int): Unit = {
     val fix = func(xi)
-    val funcx = func(xi)
+    val funcX = func(xi)
     val section = Math.abs(x0 - xi)
-    println(f"$iterator $x0%1.4f $xi%1.4f $fix%1.4f  $funcx%1.4f  $section%1.4f")
+    println(f"$iterator $x0%1.4f $xi%1.4f $fix%1.4f  $funcX%1.4f  $section%1.4f")
   }
 }

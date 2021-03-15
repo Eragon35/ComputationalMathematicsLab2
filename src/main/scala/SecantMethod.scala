@@ -42,8 +42,8 @@ object SecantMethod {
     xi - (xi - xLast) / (func(xi) - func(xLast)) * func(xi)
   }
   private def show(xLast: Double, xi: Double, root: Double, iterator: Int): Unit = {
-    val funcx = func(root)
+    val funcX = func(root)
     val section = Math.abs(root - xi)
-    println(f"$iterator $xLast%1.4f $xi%1.4f $root%1.4f $funcx%1.4f $section%1.4f")
+    println(f"$iterator $xLast%1.4f $xi%1.4f $root%1.4f $funcX%1.4f $section%1.4f")
   }
 }

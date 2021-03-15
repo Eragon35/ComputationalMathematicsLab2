@@ -4,7 +4,7 @@ object Main {
   var accuracy: Double = 0.01
   var left: Double = -10
   var right: Double = 10
-  var step: Double = 0.5
+  var step: Double = 0.25
   var func: Double => Double = Math.pow(left, _)
   var funcDerivative: Double => Double = Math.pow(left, _)
 
@@ -15,11 +15,12 @@ object Main {
       | Метод секущих
       | Метод простой итерации
       | Заданная функция 1: −1,38x^3 − 5,42x^2 + 2,57x + 10,95
-      | Функция 2: cos(x)""".stripMargin)
+      | Функция 2: cos(x)
+      | Функция 3: x^3 − 0.78x^2 − 0.826x + 0,145""".stripMargin)
 
     while (true) {
       println("\nВыберите функцию: ")
-      var temp = ConsoleHandler.functionHandler(StdIn.readLine())
+      val temp = ConsoleHandler.functionHandler(StdIn.readLine())
       func = temp._1
       funcDerivative = temp._2
       Graph.show()
