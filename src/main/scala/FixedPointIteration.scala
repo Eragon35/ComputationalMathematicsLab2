@@ -11,14 +11,14 @@ object FixedPointIteration {
       }
     }
     if (roots.isEmpty){
-      Console.err.println("На данном отрезке корней нет")
+      answer += ("На данном отрезке корней нет")
       return
     }
     val rightPointer: Double = roots((roots.size + 1) / 2 - 1)
     val leftPointer: Double = rightPointer - step
     var iterator: Int = 0
-    println("3) Метод простой итерации")
-    println("it   xi    xi+1   φ(xi+1) f(xi+1) |xi+1 - xi|")
+    answer += "3) Метод простой итерации"
+    answer += ("it   xi    xi+1   φ(xi+1) f(xi+1) |xi+1 - xi|")
     var x0 = if (funcDerivative(leftPointer) > funcDerivative(rightPointer)) leftPointer else rightPointer
     val lambda = -1 / funcDerivative(x0)
     var xi = x0 + lambda * func(x0)
@@ -29,14 +29,14 @@ object FixedPointIteration {
       iterator += 1
       show(x0, xi, iterator)
     }
-    
-    println("---------------------------------------------")
+
+    answer += ("---------------------------------------------")
   }
 
   private def show(x0: Double, xi: Double, iterator: Int): Unit = {
     val fix = func(xi)
     val funcX = func(xi)
     val section = Math.abs(x0 - xi)
-    println(f"$iterator $x0%1.4f $xi%1.4f $fix%1.4f  $funcX%1.4f  $section%1.4f")
+    answer += (f"$iterator $x0%1.4f $xi%1.4f $fix%1.4f  $funcX%1.4f  $section%1.4f")
   }
 }

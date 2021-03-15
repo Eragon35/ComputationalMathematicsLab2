@@ -1,4 +1,7 @@
+import scala.collection.mutable
 import scala.io.StdIn
+import collection.immutable.IndexedSeq
+import scala.collection.mutable.ArrayBuffer
 
 object Main {
   var accuracy: Double = 0.01
@@ -7,6 +10,8 @@ object Main {
   var step: Double = 0.25
   var func: Double => Double = Math.pow(left, _)
   var funcDerivative: Double => Double = Math.pow(left, _)
+  var filename: String = "output"
+  var answer: ArrayBuffer[String] = ArrayBuffer[String]()
 
 
   def main(args: Array[String]): Unit = {
@@ -25,15 +30,20 @@ object Main {
       funcDerivative = temp._2
       Graph.show()
       ConsoleHandler.confirmGraph()
+      val isConsole = ConsoleHandler.outputRoots()
 
-
-      println("Начинаем вычислять корни:")
       BisectionMethod.solve() // find right root by 'Метод половинного деления'
       SecantMethod.solve() // find left root by 'Метод секущих'
       FixedPointIteration.solve() // find central root by 'Метод простой итерации'
+
+      println("Начинаем вычислять корни:") // шучу сейчас буду только выводить корни
+      if (isConsole) answer.foreach(x => println(x))
+      else WriteToFile.write(filename)
+
       left = -10
       right = 10
       step = 0.25
+      answer.clear()
     }
   }
 }
