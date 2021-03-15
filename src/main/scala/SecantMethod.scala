@@ -32,6 +32,7 @@ object SecantMethod {
       xLast = xi
       xi = root
       root = findRoot(xLast, xi)
+      iterator += 1
       show(xLast, xi, root, iterator)
     }
     println("---------------------------------------------")

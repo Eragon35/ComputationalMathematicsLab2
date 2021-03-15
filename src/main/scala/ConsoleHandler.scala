@@ -1,5 +1,3 @@
-import Main.{left, right}
-
 import scala.io.StdIn
 
 object ConsoleHandler {
@@ -9,7 +7,7 @@ object ConsoleHandler {
       case "2" => second // TODO: add normal functions
       case "exit" | "e" | "no" | "n" => System.exit(0)
         Math.pow(2, _) // костыль чтобы иметь возможность выйти из программы
-      case _ => Console.err.println("Такой функции нет, дам только самую первую")
+      case _ => Console.err.println("Такой функции нет, установлена первая функция")
         first
     }
   }

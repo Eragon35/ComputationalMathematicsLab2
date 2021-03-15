@@ -19,19 +19,19 @@ object Main {
     while (true) {
       println("\nВыберите функцию: ")
       func = ConsoleHandler.functionHandler(StdIn.readLine())
-      ShowGraph.show()
+      Graph.show()
       var confirmGraph = false
       println("Вас устраивает точность в 0.01 ?")
       accuracy = ConsoleHandler.accuracyAgreeHandler(StdIn.readLine())
       while (!confirmGraph) {
-        println("Введите левый интервал: ")
+        println("Введите начало интервала: ")
         left = StdIn.readDouble()
-        println("Введите правый интервал: ")
+        println("Введите конец интервала: ")
         right = StdIn.readDouble()
-        step = if (right - left < 5) (right - left) / 10 else 0.5
-        if (right <= left) Console.err.println("Правый интеравл должен быть больше левого интервала")
+        if (right <= left) Console.err.println("Конец интеравл должен быть больше начала интервала")
         else {
-          ShowGraph.show()
+          step = if (right - left < 5) (right - left) / 10 else 0.5
+          Graph.show()
           println("Вас устраивает график? Он содержит корни")
           confirmGraph = ConsoleHandler.agreeHandler(StdIn.readLine())
         }
