@@ -2,9 +2,10 @@ import scala.io.StdIn
 
 object Main {
   var accuracy: Double = 0.01
-  var left: Double = 0
-  var right: Double = 0
-  var func: Double => Double = Math.pow(left, _) // TODO: rework to smth normal
+  var left: Double = -10
+  var right: Double = 10
+  var step: Double = 0.5
+  var func: Double => Double = Math.pow(left, _)
 
 
   def main(args: Array[String]): Unit = {
@@ -16,9 +17,9 @@ object Main {
       | Функция 2: cos(x)""".stripMargin)
 
     while (true) {
-      println("\nВыберите функцию: ") // TODO: add string with different functions
+      println("\nВыберите функцию: ")
       func = ConsoleHandler.functionHandler(StdIn.readLine())
-      // show graph of function
+      ShowGraph.show()
       var confirmGraph = false
       println("Вас устраивает точность в 0.01 ?")
       accuracy = ConsoleHandler.accuracyAgreeHandler(StdIn.readLine())
@@ -27,9 +28,10 @@ object Main {
         left = StdIn.readDouble()
         println("Введите правый интервал: ")
         right = StdIn.readDouble()
+        step = if (right - left < 5) (right - left) / 10 else 0.5
         if (right <= left) Console.err.println("Правый интеравл должен быть больше левого интервала")
         else {
-          // show new graph
+          ShowGraph.show()
           println("Вас устраивает график? Он содержит корни")
           confirmGraph = ConsoleHandler.agreeHandler(StdIn.readLine())
         }
@@ -38,6 +40,9 @@ object Main {
       BisectionMethod.solve() // find right root by 'Метод половинного деления'
       SecantMethod.solve() // find left root by 'Метод секущих'
       FixedPointIteration.solve() // find central root by 'Метод простой итерации'
+      left = -10
+      right = 10
+      step = 0.5
     }
   }
 }

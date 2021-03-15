@@ -5,7 +5,6 @@ import scala.util.control.Breaks._
 
 object BisectionMethod {
   def solve(): Unit = {
-    val step: Double = if (right - left < 5) (right - left) / 10 else 0.5
     val sing: Boolean = func(right) >= 0
     var leftPointer: Double = NaN
     var rightPointer: Double = NaN
@@ -23,21 +22,21 @@ object BisectionMethod {
       return
     }
     var root: Double = (leftPointer + rightPointer) / 2
-    var counter: Int = 0
+    var iterator: Int = 0
     println("1) Метод половинного деления:")
     println("it   a      b      x     f(a)    f(b)    f(x)  |a-b|")
-    show(leftPointer, rightPointer, root, counter)
-    while (Math.abs(leftPointer - rightPointer) >= accuracy && func(root) != 0.0) {
+    show(leftPointer, rightPointer, root, iterator)
+    while (Math.abs(leftPointer - rightPointer) >= accuracy && Math.abs(func(root)) >= accuracy) {
       if ((func(leftPointer) > 0) == (func(root) > 0)) leftPointer = root
       else rightPointer = root
       root = (leftPointer + rightPointer) / 2
-      counter += 1
-      show(leftPointer, rightPointer, root, counter)
+      iterator += 1
+      show(leftPointer, rightPointer, root, iterator)
     }
     println("----------------------------------------------------")
   }
 
-  def show(a: Double, b: Double, x: Double, iterator: Int): Unit = {
+  private def show(a: Double, b: Double, x: Double, iterator: Int): Unit = {
     val funca = func(a)
     val funcb = func(b)
     val funcx = func(x)

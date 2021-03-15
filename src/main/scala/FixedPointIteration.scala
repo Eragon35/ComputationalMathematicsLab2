@@ -1,8 +1,7 @@
-import Main.{func, left, right}
+import Main._
 
 object FixedPointIteration {
   def solve(): Unit = {
-    val step: Double = if (right - left < 5) (right - left) / 10 else 0.5
     var sing: Boolean = func(left) >= 0
     var roots = Vector[Double]()
     for (i <- left to right+step by step ){ // going right if find other sign add position to vector & change sign
@@ -17,9 +16,10 @@ object FixedPointIteration {
     }
     val rightPointer: Double = roots((roots.size + 1) / 2 - 1)
     val leftPointer: Double = rightPointer - step
-    // use Метод простой итерации
-    println(s"$leftPointer $rightPointer")
+    println("3) Метод простой итерации")
+    println("it   xi    xi+1   φ(xi+1) f(xi+1) |xi+1 - xi|")
 
+    println("---------------------------------------------")
   }
 
 }

@@ -5,7 +5,6 @@ import scala.util.control.Breaks._
 
 object SecantMethod {
   def solve(): Unit = {
-    val step: Double = if (right - left < 5) (right - left) / 10 else 0.5
     val sing: Boolean = func(left) >= 0
     var leftPointer: Double = NaN
     var rightPointer: Double = NaN
