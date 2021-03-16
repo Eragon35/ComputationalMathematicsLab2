@@ -13,6 +13,7 @@ object Main {
   var step: Double = 0.25
   var func: Double => Double = Math.pow(left, _)
   var funcDerivative: Double => Double = Math.pow(left, _)
+  var funcSecondDerivative: Double => Double = Math.pow(left, _)
   var filename: String = "output"
   var answer: ArrayBuffer[String] = ArrayBuffer[String]()
 
@@ -32,6 +33,7 @@ object Main {
       val temp = ConsoleHandler.functionHandler(StdIn.readLine())
       func = temp._1
       funcDerivative = temp._2
+      funcSecondDerivative = temp._3
       Graph.show()
       ConsoleHandler.confirmGraph()
       val isConsole = ConsoleHandler.outputRoots()

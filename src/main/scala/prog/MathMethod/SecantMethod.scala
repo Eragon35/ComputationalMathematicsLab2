@@ -7,36 +7,40 @@ import scala.util.control.Breaks.{break, breakable}
 
 object SecantMethod {
   def solve(): Unit = {
-    val sing: Boolean = func(left) >= 0
-    var leftPointer: Double = NaN
-    var rightPointer: Double = NaN
-    breakable {
-      for (i <- left to right + step by step) { // going right until find first position with other sign
-        if (func(i) < 0 == sing) {
-          rightPointer = i
-          leftPointer = i - step // we can use original left border, but it will be quick if we use the closest one
-          break
-        }
-      }
-    }
-    if (rightPointer.isNaN) {
-      answer += "На данном отрезке корней нет"
-      return
-    }
+//    val sing: Boolean = func(left) >= 0
+//    var leftPointer: Double = NaN
+//    var rightPointer: Double = NaN
+//    breakable { // выввести х0 - начальное приближение
+//      for (i <- left to right + step by step) { // going right until find first position with other sign
+//        if (func(i) < 0 == sing) {
+//          rightPointer = i
+//          leftPointer = i - step // we can use original left border, but it will be quick if we use the closest one
+//          break
+//        }
+//      }
+//    }
+//    if (rightPointer.isNaN) {
+//      answer += "На данном отрезке корней нет"
+//      return
+//    }
 
+    var x0 = if (func(left) * funcSecondDerivative(left) > 0) left else right
     answer += "2) Метод секущих"
+    answer += ("Первое приближение: x0 = " + x0)
+    val leftAnswer = func(left) * funcSecondDerivative(left)
+    val rightAnswer = func(right) * funcSecondDerivative(right)
+    answer += (f"left = $leftAnswer%1.4f, right = $rightAnswer%1.4f")
     answer += "it  xi-1    xi      xi+1  f(xi+1) |xi+1 - xi|"
     var iterator: Int = 0
-    var xi = rightPointer
-    var xLast = leftPointer
-    var root = findRoot(xLast, xi)
-    show(xLast, xi, root, iterator)
+    var xi = x0 + 0.5
+    var root = findRoot(x0, xi)
+    show(x0, xi, root, iterator)
     while (Math.abs(root - xi) >= accuracy) {
-      xLast = xi
+      x0 = xi
       xi = root
-      root = findRoot(xLast, xi)
+      root = findRoot(x0, xi)
       iterator += 1
-      show(xLast, xi, root, iterator)
+      show(x0, xi, root, iterator)
     }
     answer += "---------------------------------------------"
   }
